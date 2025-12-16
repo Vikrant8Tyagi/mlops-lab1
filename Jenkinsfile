@@ -5,12 +5,9 @@ pipeline {
         stage('Setup Environment') {
             steps {
                 sh '''
-                # In a real setup, we would use a Docker agent with Python
-installed.
-                # For this simple lab, we install Python directly in the
-Jenkins container.
-                apt-get update && apt-get install -y python3 python3-pip
-python3-venv
+                # In a real setup, we would use a Docker agent with Python installed.
+                # For this simple lab, we install Python directly in theJenkins container.
+                apt-get update && apt-get install -y python3 python3-pip python3-venv
                 '''
             }
         }
