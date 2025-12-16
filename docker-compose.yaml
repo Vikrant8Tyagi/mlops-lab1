@@ -1,0 +1,15 @@
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    user: root # Run as root to allow installing python easily in this lab
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    environment:
+ # Required to allow Jenkins to clone from the local /app directory
+      - JAVA_OPTS=-Dhudson.plugins.git.GitSCM.ALLOW_LOCAL_CHECKOUT=true
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
+      # We mount the current project directory so Jenkins can see our code
+      - ./:/app
+    working_dir: /app

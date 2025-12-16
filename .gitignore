@@ -1,0 +1,13 @@
+# Data
+data/
+*.parquet
+.venv/
+# Python Environment
+venv/
+__pycache__/
+*.pyc
+# IDEs
+.vscode/
+.idea/
+# CI/CD
+jenkins_home/
