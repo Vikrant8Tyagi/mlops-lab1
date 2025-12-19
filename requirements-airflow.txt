@@ -1,7 +1,7 @@
 # Core Data & ML
 pandas==2.3.3
 scikit-learn==1.7.2
-numpy==2.3.5
+numpy==1.26.4
 pyarrow==22.0.0
 
 # Database & ORM (CRITICAL FIX)
