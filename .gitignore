@@ -28,3 +28,7 @@ kafka_*.tgz
 
 # Virtual env
 .venv/
+
+# Test & CI artifacts
+reports/
+test-results.xml

@@ -1,29 +1,26 @@
-# Core Data & ML
-pandas==2.3.3
-scikit-learn==1.7.2
-numpy==1.26.4
-pyarrow==22.0.0
+# ============================
+# Airflow SAFE Dependencies
+# ============================
 
-# Database & ORM (CRITICAL FIX)
-# Airflow creates a crash loop with SQLAlchemy 2.0+ in this configuration.
+# Core (provider-compatible)
+pandas>=2.1.2,<2.2
+numpy>=1.26,<2.0
+
+# ORM (Airflow compatible)
 sqlalchemy<2.0
 
-# MLOps & Tracking
-mlflow==3.7.0
-boto3==1.42.4
-skl2onnx==1.18.0
-onnx==1.17.0
-onnxruntime==1.20.1
+# AWS (strict pinning)
+boto3>=1.35.16,<1.35.17
+botocore>=1.35.16,<1.35.17
 
+# Crypto stack (provider safe)
+cryptography>=41.0.5,<44
+cffi>=1.9,<2.0
 
-# Data Validation
-great_expectations==1.9.2
+# Airflow Providers
+apache-airflow-providers-google
+apache-airflow-providers-snowflake
 
-# Streaming (Lab 6)
-confluent-kafka==2.12.2
-
-# Configuration & Utilities
+# Utilities
 pyyaml==6.0.3
-
-# Database Drivers (Required for Airflow Postgres Backend)
 psycopg2-binary==2.9.10
