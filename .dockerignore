@@ -1,0 +1,22 @@
+# Python caches
+__pycache__/
+.ruff_cache/
+.pytest_cache/
+
+# Virtual env
+.venv/
+
+# Git
+.git/
+.gitignore
+
+# Jenkins & Java artifacts
+jenkins_home/
+.java/
+
+# Test / CI outputs
+reports/
+test-results.xml
+
+# OS
+.DS_Store
