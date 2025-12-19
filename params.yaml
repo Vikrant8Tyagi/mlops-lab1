@@ -1,0 +1,22 @@
+data:
+  path: "data/green_tripdata_2023-01.parquet"
+  test_size: 0.2
+
+features:
+  numerical:
+    - passenger_count
+    - trip_distance
+    - fare_amount
+  categorical:
+    - PULocationID
+    - DOLocationID
+  target: high_tip
+
+model:
+  n_estimators: 100
+  random_state: 42
+  min_accuracy: 0.60
+  min_f1: 0.55
+
+mlflow:
+  experiment_name: "NYC_Taxi_Refactored"

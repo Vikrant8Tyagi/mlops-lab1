@@ -1,0 +1,25 @@
+FROM apache/airflow:2.7.1-python3.10
+
+USER root
+RUN apt-get update && apt-get install -y gcc && rm -rf /var/lib/apt/lists/*
+
+USER airflow
+
+# 1. Install Dependencies
+COPY requirements.txt /requirements.txt
+COPY requirements-airflow.txt /requirements-airflow.txt
+RUN pip install --no-cache-dir -r /requirements-airflow.txt
+
+# 2. Copy Source Code & DAGs (Baking them in)
+COPY --chown=airflow:root src/ /opt/airflow/project/src
+# Create data dir (we don't bake data in prod images)
+RUN mkdir -p /opt/airflow/project/data
+
+# Copy Entrypoint & Config
+COPY --chown=airflow:root main.py /opt/airflow/project/
+COPY --chown=airflow:root params.yaml /opt/airflow/project/
+
+COPY --chown=airflow:root dags/ /opt/airflow/dags
+
+# Set PYTHONPATH
+ENV PYTHONPATH="${PYTHONPATH}:/opt/airflow/project"

@@ -1,0 +1,26 @@
+services:
+  # --- Lab 2: CI Server ---
+  jenkins:
+    image: jenkins/jenkins:lts
+    user: root
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    environment:
+      - JAVA_OPTS=-Dhudson.plugins.git.GitSCM.ALLOW_LOCAL_CHECKOUT=true
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
+      - ./:/app
+      # MOUNT DOCKER SOCKET FOR DOCKER-IN-DOCKER BUILD
+      # This gives Jenkins permission to run 'docker build' on the host system.
+      - /var/run/docker.sock:/var/run/docker.sock
+    working_dir: /app
+
+  # --- Lab 11: Private Registry ---
+  registry:
+    image: registry:2
+    ports:
+      - "5001:5000"
+    restart: always
+    volumes:
+      - ./registry_data:/var/lib/registry
